@@ -5,10 +5,10 @@ vim.lsp.enable(servers)
 
 -- read :h vim.lsp.config for changing options of lsp servers 
 
-local lspconfig = require("lspconfig")
+--local lspconfig = require("lspconfig")
 
 -- Настройка для Go с gopls
-lspconfig.gopls.setup({
+vim.lsp.config.gopls.setup({
   -- Опции для gopls
   settings = {
     gopls = {
