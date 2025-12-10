@@ -1,4 +1,5 @@
 k9s:
+  skip_rbac_ui: true
   liveViewAutoRefresh: false
   screenDumpDir: /Users/bozhko.i/Library/Application Support/k9s/screen-dumps
   refreshRate: 2
@@ -9,7 +10,7 @@ k9s:
   portForwardAddress: localhost
   ui:
     enableMouse: false
-    headless: false
+    headless: true 
     logoless: true 
     crumbsless: true 
     splashless: false 
