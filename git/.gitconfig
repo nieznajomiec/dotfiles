@@ -1,0 +1,12 @@
+[user]
+	name = 
+	email = 
+	signingkey = 
+[push]
+	autoSetupRemote = true
+[credential]
+  helper = pass --pass-name "" --template "~/.config/git-credential-pass/.template"
+[includeIf "gitdir:~/gitlab//"]
+  path = ~/.gitconfig-private  
+[commit]
+	gpgsign = true

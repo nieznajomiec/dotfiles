@@ -67,7 +67,7 @@ ZSH_THEME="robbyrussell"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -77,7 +77,12 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker emoji ssh helm history iterm2 kubectl npm zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+plugins=(git aliases alias-finder ansible archlinux copyfile copypath copybuffer docker docker-compose history jump kubectl zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+
+zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
+zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
+zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
+zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
 source $ZSH/oh-my-zsh.sh
 
@@ -109,26 +114,22 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias lla="ls -lah"
-alias n="nvim"
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-
-export GPG_TTY=$(tty)
-export EDITOR="nvim"
-
-# Node Version Manager (nvm)
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
-eval `ssh-agent -s`
-ssh-add ~/.ssh/gitlab
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-[[ "$PATH" == *"$HOME/bin:"* ]] || export PATH="$HOME/bin:$PATH"
-! { which werf | grep -qsE "^/Users/bozhko.i/.trdl/"; } && [[ -x "$HOME/bin/trdl" ]] && source $("$HOME/bin/trdl" use werf "2" "stable")
-export PATH="$HOME/.helm:$PATH"
-source $HOME/.helm/helmenv.sh
+
+alias lla="la -lah"
+alias n="nvim"
+
+# Start the ssh-agent
+eval "$(ssh-agent -s)"
+
+# Add your SSH key to the agent (replace 'id_rsa' with your key name if different)
+ssh-add ~/.ssh/github
+
+alias sgpt="docker run --rm --volume gpt-cache:/tmp/shell_gpt --env OPENAI_API_KEY --env DEFAULT_MODEL --env API_BASE_URL --env OS_NAME=$(uname -s) --env SHELL_NAME=$(echo $SHELL) ghcr.io/ther1d/shell_gpt"
+export OPENAI_API_KEY="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"
+export DEFAULT_MODEL=x-ai/grok-code-fast-1
+export API_BASE_URL=https://openrouter.ai/api/v1/chat/completions
+export EDITOR=nvim
