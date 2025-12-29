@@ -5,9 +5,9 @@
 [push]
 	autoSetupRemote = true
 [credential]
-  helper = pass --pass-name "" --template "~/.config/git-credential-pass/.template"
-[includeIf "gitdir:~/gitlab//"]
-  path = ~/.gitconfig-private  
+  helper = pass --pass-name "${org}" --template "~/.config/git-credential-pass/.${org}.template"
+[includeIf "gitdir:~/gitlab/${org}/"]
+  path = ~/.config/git-credential-pass/.gitconfig-work
 [commit]
 	gpgsign = true
 
