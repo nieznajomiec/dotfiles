@@ -128,8 +128,4 @@ eval "$(ssh-agent -s)"
 # Add your SSH key to the agent (replace 'id_rsa' with your key name if different)
 ssh-add ~/.ssh/github
 
-alias sgpt="docker run --rm --volume gpt-cache:/tmp/shell_gpt --env OPENAI_API_KEY --env DEFAULT_MODEL --env API_BASE_URL --env OS_NAME=$(uname -s) --env SHELL_NAME=$(echo $SHELL) ghcr.io/ther1d/shell_gpt"
-export OPENAI_API_KEY="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"
-export DEFAULT_MODEL=x-ai/grok-code-fast-1
-export API_BASE_URL=https://openrouter.ai/api/v1/chat/completions
 export EDITOR=nvim
