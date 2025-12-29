@@ -1,0 +1,11 @@
+export const REFRESH_INTERVAL = 'refresh-interval';
+export const CPU_METER = 'cpu-meter';
+export const MEMORY_METER = 'memory-meter';
+export const STORAGE_METER = 'storage-meter';
+export const NETWORK_METER = 'network-meter';
+export const SWAP_METER = 'swap-meter';
+export const LOAD_METER = 'load-meter';
+export const POSITION = 'position';
+export const LAYOUT = 'layout';
+export const MEMORY_CALCULATION_METHOD = 'memory-calculation-method';
+export const SHOW_ACTIVITY = 'show-activity';
